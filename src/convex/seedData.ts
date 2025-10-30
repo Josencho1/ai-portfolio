@@ -136,3 +136,29 @@ export const addFundingDashboard = internalMutation({
     return { message: "Interactive Funding Dashboard added successfully" };
   },
 });
+
+export const addRdfundingInfographic = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    // Check if project already exists to avoid duplicates
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "R&D Funding Infographic for Hive Mind Solutions",
+      description: "An interactive infographic visualizing R&D funding opportunities for Hive Mind Solutions, featuring doughnut and bar charts with Chart.js, multi-layered funding ecosystem details (federal, provincial, municipal), tax credit breakdowns, talent pipeline guidance, and top program recommendations using Tailwind CSS and JavaScript.",
+      category: "Web Development",
+      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js"],
+      link: null,
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "R&D Funding Infographic added successfully" };
+  },
+});
