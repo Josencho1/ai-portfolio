@@ -59,6 +59,32 @@ export const seed = internalMutation({
   },
 });
 
+export const addCareerRoadmap = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    // Check if project already exists to avoid duplicates
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "AI Career Roadmap Infographic"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "AI Career Roadmap Infographic",
+      description: "An interactive HTML/CSS visualization of my study plan to become an AI engineer, featuring a progress dashboard, expandable timeline with Coursera courses and book outlines, and a doughnut chart for skill distribution using Chart.js.",
+      category: "Web Development",
+      technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
+      link: null,
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "AI Career Roadmap Infographic added successfully" };
+  },
+});
+
 export const addResilienceReport = internalMutation({
   args: {},
   handler: async (ctx) => {
