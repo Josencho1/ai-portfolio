@@ -41,6 +41,14 @@ export const seed = internalMutation({
         link: null,
         featured: false,
       },
+      {
+        title: "AI Career Roadmap Infographic",
+        description: "An interactive HTML/CSS visualization of my study plan to become an AI engineer, featuring a progress dashboard, expandable timeline with Coursera courses and book outlines, and a doughnut chart for skill distribution using Chart.js.",
+        category: "Web Development",
+        technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
+        link: null,
+        featured: false,
+      },
     ];
 
     for (const project of projects) {

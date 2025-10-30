@@ -12,7 +12,7 @@ export default function Projects() {
   
   const projects = useQuery(api.projects.getByCategory, { category: selectedCategory });
 
-  const categories = ["all", "AI Systems", "Automation"];
+  const categories = ["all", "AI Systems", "Automation", "Web Development"];
 
   return (
     <section id="projects" className="min-h-screen flex items-center justify-center px-6 py-32">
