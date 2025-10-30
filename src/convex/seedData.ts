@@ -162,3 +162,21 @@ export const addRdfundingInfographic = internalMutation({
     return { message: "R&D Funding Infographic added successfully" };
   },
 });
+
+export const updateRdfundingLink = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    // Find the project by title to avoid duplicates
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
+      .first();
+    if (!existing) {
+      return { message: "Project not found" };
+    }
+
+    // Update the link field
+    await ctx.db.patch(existing._id, { link: "https://lightcoral-trout-302187.hostingersite.com/" });
+    return { message: "Link updated successfully" };
+  },
+});
