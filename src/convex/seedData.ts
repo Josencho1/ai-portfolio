@@ -58,3 +58,29 @@ export const seed = internalMutation({
     return { message: "Seed data created successfully" };
   },
 });
+
+export const addResilienceReport = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    // Check if project already exists to avoid duplicates
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "LLM Resilience Test Report"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "LLM Resilience Test Report",
+      description: "An interactive HTML report for Hive Mind Solutions evaluating LLM resilience against prompt injection attacks, featuring a sticky navigation, key findings on model performance (e.g., Gemini 2.5 Pro and Claude Sonnet 4.5 showed high resilience), mitigation strategies, and recommendations for agent security using a custom 'HMS Secure Responder Template'.",
+      category: "Web Development",
+      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Inter Font"],
+      link: null,
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "LLM Resilience Test Report added successfully" };
+  },
+});
