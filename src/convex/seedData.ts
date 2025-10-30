@@ -110,3 +110,29 @@ export const addResilienceReport = internalMutation({
     return { message: "LLM Resilience Test Report added successfully" };
   },
 });
+
+export const addFundingDashboard = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    // Check if project already exists to avoid duplicates
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "Interactive Funding Dashboard for Hive Mind Solutions"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "Interactive Funding Dashboard for Hive Mind Solutions",
+      description: "An interactive dashboard visualizing R&D funding opportunities, featuring a program explorer with filters, dynamic charts (Chart.js), strategic pathways, and a prioritized action plan using Tailwind CSS and JavaScript.",
+      category: "Web Development",
+      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js", "Inter Font"],
+      link: null,
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "Interactive Funding Dashboard added successfully" };
+  },
+});
