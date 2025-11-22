@@ -62,13 +62,14 @@ export const seed = internalMutation({
 export const addCareerRoadmap = internalMutation({
   args: {},
   handler: async (ctx) => {
-    // Check if project already exists to avoid duplicates
     const existing = await ctx.db
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "AI Career Roadmap Infographic"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://orangered-herring-112166.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -76,11 +77,11 @@ export const addCareerRoadmap = internalMutation({
       description: "An interactive HTML/CSS visualization of my study plan to become an AI engineer, featuring a progress dashboard, expandable timeline with Coursera courses and book outlines, and a doughnut chart for skill distribution using Chart.js.",
       category: "Web Development",
       technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
-      link: "orangered-herring-112166.hostingersite.com",
+      link: "https://orangered-herring-112166.hostingersite.com/",
       featured: true,
     };
 
-    await ctx.db.patch(existing._id, { link: "orangered-herring-112166.hostingersite.com" });
+    await ctx.db.insert("projects", project);
     return { message: "AI Career Roadmap Infographic added successfully" };
   },
 });
@@ -88,13 +89,14 @@ export const addCareerRoadmap = internalMutation({
 export const addResilienceReport = internalMutation({
   args: {},
   handler: async (ctx) => {
-    // Check if project already exists to avoid duplicates
     const existing = await ctx.db
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "LLM Resilience Test Report"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://antiquewhite-snake-885911.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -102,11 +104,11 @@ export const addResilienceReport = internalMutation({
       description: "An interactive HTML report for Hive Mind Solutions evaluating LLM resilience against prompt injection attacks, featuring a sticky navigation, key findings on model performance (e.g., Gemini 2.5 Pro and Claude Sonnet 4.5 showed high resilience), mitigation strategies, and recommendations for agent security using a custom 'HMS Secure Responder Template'.",
       category: "Web Development",
       technologies: ["HTML", "Tailwind CSS", "JavaScript", "Inter Font"],
-      link: "antiquewhite-snake-885911.hostingersite.com",
+      link: "https://antiquewhite-snake-885911.hostingersite.com/",
       featured: false,
     };
 
-    await ctx.db.patch(existing._id, { link: "antiquewhite-snake-885911.hostingersite.com" });
+    await ctx.db.insert("projects", project);
     return { message: "LLM Resilience Test Report added successfully" };
   },
 });
@@ -114,13 +116,14 @@ export const addResilienceReport = internalMutation({
 export const addRdfundingInfographic = internalMutation({
   args: {},
   handler: async (ctx) => {
-    // Check if project already exists to avoid duplicates
     const existing = await ctx.db
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://lightcoral-trout-302187.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -128,11 +131,11 @@ export const addRdfundingInfographic = internalMutation({
       description: "An interactive infographic visualizing R&D funding opportunities for Hive Mind Solutions, featuring doughnut and bar charts with Chart.js, multi-layered funding ecosystem details (federal, provincial, municipal), tax credit breakdowns, talent pipeline guidance, and top program recommendations using Tailwind CSS and JavaScript.",
       category: "Web Development",
       technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js"],
-      link: "lightcoral-trout-302187.hostingersite.com",
+      link: "https://lightcoral-trout-302187.hostingersite.com/",
       featured: false,
     };
 
-    await ctx.db.patch(existing._id, { link: "lightcoral-trout-302187.hostingersite.com" });
+    await ctx.db.insert("projects", project);
     return { message: "R&D Funding Infographic added successfully" };
   },
 });
@@ -140,7 +143,6 @@ export const addRdfundingInfographic = internalMutation({
 export const updateRdfundingLink = internalMutation({
   args: {},
   handler: async (ctx) => {
-    // Find the project by title to avoid duplicates
     const existing = await ctx.db
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
@@ -149,7 +151,6 @@ export const updateRdfundingLink = internalMutation({
       return { message: "Project not found" };
     }
 
-    // Update the link field
     await ctx.db.patch(existing._id, { link: "https://lightcoral-trout-302187.hostingersite.com/" });
     return { message: "Link updated successfully" };
   },
@@ -162,8 +163,10 @@ export const addExpenseTracker = internalMutation({
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "Expense Tracker Application"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://github.com/Josencho1/expense-tracker" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -175,7 +178,7 @@ export const addExpenseTracker = internalMutation({
       featured: false,
     };
 
-    await ctx.db.patch(existing._id, { link: "https://github.com/Josencho1/expense-tracker" });
+    await ctx.db.insert("projects", project);
     return { message: "Expense Tracker Application added successfully" };
   },
 });
@@ -187,8 +190,10 @@ export const addGasTechUnit3 = internalMutation({
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "Gas Technician Unit 3 Training Website"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://gray-badger-918104.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -196,11 +201,11 @@ export const addGasTechUnit3 = internalMutation({
       description: "Interactive educational website covering properties, characteristics, and safe handling of fuel gases. Refactored using Claude AI with meta-prompting and context engineering, fact-checked against CSA training units and code B149.1.25 for regulatory compliance.",
       category: "Technical Documentation",
       technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1.25", "Meta-Prompting", "Context Engineering"],
-      link: "gray-badger-918104.hostingersite.com",
+      link: "https://gray-badger-918104.hostingersite.com/",
       featured: false,
     };
 
-    await ctx.db.patch(existing._id, { link: "gray-badger-918104.hostingersite.com" });
+    await ctx.db.insert("projects", project);
     return { message: "Gas Technician Unit 3 Training Website added successfully" };
   },
 });
@@ -212,8 +217,10 @@ export const addFurnaceSOP = internalMutation({
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "High-Efficiency Furnace Maintenance SOP"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://navajowhite-snake-846878.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -225,7 +232,7 @@ export const addFurnaceSOP = internalMutation({
       featured: false,
     };
 
-    await ctx.db.patch(existing._id, { link: "https://navajowhite-snake-846878.hostingersite.com/" });
+    await ctx.db.insert("projects", project);
     return { message: "High-Efficiency Furnace Maintenance SOP added successfully" };
   },
 });
@@ -237,8 +244,10 @@ export const addContextEngineering = internalMutation({
       .query("projects")
       .filter((q) => q.eq(q.field("title"), "Context Engineering Research"))
       .first();
+    
     if (existing) {
-      return { message: "Project already exists" };
+      await ctx.db.patch(existing._id, { link: "https://slateblue-magpie-954127.hostingersite.com/" });
+      return { message: "Project link updated" };
     }
 
     const project = {
@@ -250,7 +259,7 @@ export const addContextEngineering = internalMutation({
       featured: true,
     };
 
-    await ctx.db.patch(existing._id, { link: "https://slateblue-magpie-954127.hostingersite.com/" });
+    await ctx.db.insert("projects", project);
     return { message: "Context Engineering Research added successfully" };
   },
 });
