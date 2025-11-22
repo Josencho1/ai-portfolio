@@ -47,7 +47,7 @@ export const seed = internalMutation({
         category: "Web Development",
         technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
         link: null,
-        featured: false,
+        featured: true,
       },
     ];
 
@@ -76,11 +76,11 @@ export const addCareerRoadmap = internalMutation({
       description: "An interactive HTML/CSS visualization of my study plan to become an AI engineer, featuring a progress dashboard, expandable timeline with Coursera courses and book outlines, and a doughnut chart for skill distribution using Chart.js.",
       category: "Web Development",
       technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
-      link: null,
-      featured: false,
+      link: "orangered-herring-112166.hostingersite.com",
+      featured: true,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "orangered-herring-112166.hostingersite.com" });
     return { message: "AI Career Roadmap Infographic added successfully" };
   },
 });
@@ -102,38 +102,12 @@ export const addResilienceReport = internalMutation({
       description: "An interactive HTML report for Hive Mind Solutions evaluating LLM resilience against prompt injection attacks, featuring a sticky navigation, key findings on model performance (e.g., Gemini 2.5 Pro and Claude Sonnet 4.5 showed high resilience), mitigation strategies, and recommendations for agent security using a custom 'HMS Secure Responder Template'.",
       category: "Web Development",
       technologies: ["HTML", "Tailwind CSS", "JavaScript", "Inter Font"],
-      link: null,
+      link: "antiquewhite-snake-885911.hostingersite.com",
       featured: false,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "antiquewhite-snake-885911.hostingersite.com" });
     return { message: "LLM Resilience Test Report added successfully" };
-  },
-});
-
-export const addFundingDashboard = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    // Check if project already exists to avoid duplicates
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "Interactive Funding Dashboard for Hive Mind Solutions"))
-      .first();
-    if (existing) {
-      return { message: "Project already exists" };
-    }
-
-    const project = {
-      title: "Interactive Funding Dashboard for Hive Mind Solutions",
-      description: "An interactive dashboard visualizing R&D funding opportunities, featuring a program explorer with filters, dynamic charts (Chart.js), strategic pathways, and a prioritized action plan using Tailwind CSS and JavaScript.",
-      category: "Web Development",
-      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js", "Inter Font"],
-      link: null,
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "Interactive Funding Dashboard added successfully" };
   },
 });
 
@@ -154,11 +128,11 @@ export const addRdfundingInfographic = internalMutation({
       description: "An interactive infographic visualizing R&D funding opportunities for Hive Mind Solutions, featuring doughnut and bar charts with Chart.js, multi-layered funding ecosystem details (federal, provincial, municipal), tax credit breakdowns, talent pipeline guidance, and top program recommendations using Tailwind CSS and JavaScript.",
       category: "Web Development",
       technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js"],
-      link: null,
+      link: "lightcoral-trout-302187.hostingersite.com",
       featured: false,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "lightcoral-trout-302187.hostingersite.com" });
     return { message: "R&D Funding Infographic added successfully" };
   },
 });
@@ -201,7 +175,7 @@ export const addExpenseTracker = internalMutation({
       featured: false,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "https://github.com/Josencho1/expense-tracker" });
     return { message: "Expense Tracker Application added successfully" };
   },
 });
@@ -222,11 +196,11 @@ export const addGasTechUnit3 = internalMutation({
       description: "Interactive educational website covering properties, characteristics, and safe handling of fuel gases. Refactored using Claude AI with meta-prompting and context engineering, fact-checked against CSA training units and code B149.1.25 for regulatory compliance.",
       category: "Technical Documentation",
       technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1.25", "Meta-Prompting", "Context Engineering"],
-      link: "https://slateblue-magpie-302187.hostingersite.com/",
+      link: "gray-badger-918104.hostingersite.com",
       featured: false,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "gray-badger-918104.hostingersite.com" });
     return { message: "Gas Technician Unit 3 Training Website added successfully" };
   },
 });
@@ -247,11 +221,11 @@ export const addFurnaceSOP = internalMutation({
       description: "Interactive Standard Operating Procedure for high-efficiency gas furnace inspection, maintenance, and commissioning. Features tabbed navigation, checklists, and detailed procedures adhering to CSA B149.1-25 and Ontario TSSA regulations.",
       category: "Technical Documentation",
       technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1-25", "TSSA Compliance"],
-      link: "https://lightcoral-trout-302187.hostingersite.com/",
+      link: "https://navajowhite-snake-846878.hostingersite.com/",
       featured: false,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "https://navajowhite-snake-846878.hostingersite.com/" });
     return { message: "High-Efficiency Furnace Maintenance SOP added successfully" };
   },
 });
@@ -276,7 +250,7 @@ export const addContextEngineering = internalMutation({
       featured: true,
     };
 
-    await ctx.db.insert("projects", project);
+    await ctx.db.patch(existing._id, { link: "https://slateblue-magpie-954127.hostingersite.com/" });
     return { message: "Context Engineering Research added successfully" };
   },
 });
