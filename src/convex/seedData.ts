@@ -3,11 +3,6 @@ import { internalMutation } from "./_generated/server";
 export const seed = internalMutation({
   args: {},
   handler: async (ctx) => {
-    const existingProjects = await ctx.db.query("projects").collect();
-    if (existingProjects.length > 0) {
-      return { message: "Data already seeded" };
-    }
-
     const projects = [
       {
         title: "Multi-Agent Software Development Framework",
@@ -66,6 +61,14 @@ export const seed = internalMutation({
         featured: false,
       },
       {
+        title: "Interactive Funding Dashboard for Hive Mind Solutions",
+        description: "An interactive dashboard visualizing R&D funding opportunities, featuring a program explorer with filters, dynamic charts (Chart.js), strategic pathways, and a prioritized action plan using Tailwind CSS and JavaScript.",
+        category: "Web Development",
+        technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js", "Inter Font"],
+        link: "https://lightcoral-trout-302187.hostingersite.com/",
+        featured: false,
+      },
+      {
         title: "Expense Tracker Application",
         description: "A full-stack expense tracking application built with React, featuring PDF and CSV export capabilities, real-time data visualization, and comprehensive expense management. Developed as part of advanced Claude AI collaboration exercises.",
         category: "Web Development",
@@ -99,258 +102,24 @@ export const seed = internalMutation({
       },
     ];
 
-    for (const project of projects) {
-      await ctx.db.insert("projects", project);
-    }
-
-    return { message: "Seed data created successfully" };
-  },
-});
-
-export const addCareerRoadmap = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "AI Career Roadmap Infographic"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://orangered-herring-112166.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "AI Career Roadmap Infographic",
-      description: "An interactive HTML/CSS visualization of my study plan to become an AI engineer, featuring a progress dashboard, expandable timeline with Coursera courses and book outlines, and a doughnut chart for skill distribution using Chart.js.",
-      category: "Web Development",
-      technologies: ["HTML", "CSS (Tailwind)", "JavaScript", "Chart.js"],
-      link: "https://orangered-herring-112166.hostingersite.com/",
-      featured: true,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "AI Career Roadmap Infographic added successfully" };
-  },
-});
-
-export const addResilienceReport = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "LLM Resilience Test Report"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://antiquewhite-snake-885911.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "LLM Resilience Test Report",
-      description: "An interactive HTML report for Hive Mind Solutions evaluating LLM resilience against prompt injection attacks, featuring a sticky navigation, key findings on model performance (e.g., Gemini 2.5 Pro and Claude Sonnet 4.5 showed high resilience), mitigation strategies, and recommendations for agent security using a custom 'HMS Secure Responder Template'.",
-      category: "Web Development",
-      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Inter Font"],
-      link: "https://antiquewhite-snake-885911.hostingersite.com/",
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "LLM Resilience Test Report added successfully" };
-  },
-});
-
-export const addRdfundingInfographic = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://lightcoral-trout-302187.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "R&D Funding Infographic for Hive Mind Solutions",
-      description: "An interactive infographic visualizing R&D funding opportunities for Hive Mind Solutions, featuring doughnut and bar charts with Chart.js, multi-layered funding ecosystem details (federal, provincial, municipal), tax credit breakdowns, talent pipeline guidance, and top program recommendations using Tailwind CSS and JavaScript.",
-      category: "Web Development",
-      technologies: ["HTML", "Tailwind CSS", "JavaScript", "Chart.js"],
-      link: "https://lightcoral-trout-302187.hostingersite.com/",
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "R&D Funding Infographic added successfully" };
-  },
-});
-
-export const updateRdfundingLink = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "R&D Funding Infographic for Hive Mind Solutions"))
-      .first();
-    if (!existing) {
-      return { message: "Project not found" };
-    }
-
-    await ctx.db.patch(existing._id, { link: "https://lightcoral-trout-302187.hostingersite.com/" });
-    return { message: "Link updated successfully" };
-  },
-});
-
-export const addExpenseTracker = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "Expense Tracker Application"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://github.com/Josencho1/expense-tracker" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "Expense Tracker Application",
-      description: "A full-stack expense tracking application built with React, featuring PDF and CSV export capabilities, real-time data visualization, and comprehensive expense management. Developed as part of advanced Claude AI collaboration exercises.",
-      category: "Web Development",
-      technologies: ["React", "TypeScript", "PDF Export", "CSV Export", "Data Visualization"],
-      link: "https://github.com/Josencho1/expense-tracker",
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "Expense Tracker Application added successfully" };
-  },
-});
-
-export const addGasTechUnit3 = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "Gas Technician Unit 3 Training Website"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://gray-badger-918104.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "Gas Technician Unit 3 Training Website",
-      description: "Interactive educational website covering properties, characteristics, and safe handling of fuel gases. Refactored using Claude AI with meta-prompting and context engineering, fact-checked against CSA training units and code B149.1.25 for regulatory compliance.",
-      category: "Technical Documentation",
-      technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1.25", "Meta-Prompting", "Context Engineering"],
-      link: "https://gray-badger-918104.hostingersite.com/",
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "Gas Technician Unit 3 Training Website added successfully" };
-  },
-});
-
-export const addFurnaceSOP = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "High-Efficiency Furnace Maintenance SOP"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://navajowhite-snake-846878.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "High-Efficiency Furnace Maintenance SOP",
-      description: "Interactive Standard Operating Procedure for high-efficiency gas furnace inspection, maintenance, and commissioning. Features tabbed navigation, checklists, and detailed procedures adhering to CSA B149.1-25 and Ontario TSSA regulations.",
-      category: "Technical Documentation",
-      technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1-25", "TSSA Compliance"],
-      link: "https://navajowhite-snake-846878.hostingersite.com/",
-      featured: false,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "High-Efficiency Furnace Maintenance SOP added successfully" };
-  },
-});
-
-export const addContextEngineering = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const existing = await ctx.db
-      .query("projects")
-      .filter((q) => q.eq(q.field("title"), "Context Engineering Research"))
-      .first();
-    
-    if (existing) {
-      await ctx.db.patch(existing._id, { link: "https://slateblue-magpie-954127.hostingersite.com/" });
-      return { message: "Project link updated" };
-    }
-
-    const project = {
-      title: "Context Engineering Research",
-      description: "Comprehensive research on Context Engineering methodologies for optimizing LLM performance. Covers retrieval strategies, processing techniques, and management approaches, contrasting with traditional Prompt Engineering. Includes impact statistics and future directions for agentic context systems.",
-      category: "Research",
-      technologies: ["LLM Optimization", "Context Engineering", "Prompt Engineering", "AI Research"],
-      link: "https://slateblue-magpie-954127.hostingersite.com/",
-      featured: true,
-    };
-
-    await ctx.db.insert("projects", project);
-    return { message: "Context Engineering Research added successfully" };
-  },
-});
-
-export const fixAllLinks = internalMutation({
-  args: {},
-  handler: async (ctx) => {
-    const updates = [
-      {
-        title: "Context Engineering Research",
-        link: "https://slateblue-magpie-954127.hostingersite.com/",
-      },
-      {
-        title: "High-Efficiency Furnace Maintenance SOP",
-        link: "https://navajowhite-snake-846878.hostingersite.com/",
-      },
-      {
-        title: "Gas Technician Unit 3 Training Website",
-        link: "https://gray-badger-918104.hostingersite.com/",
-      },
-      {
-        title: "LLM Resilience Test Report",
-        link: "https://antiquewhite-snake-885911.hostingersite.com/",
-      },
-      {
-        title: "AI Career Roadmap Infographic",
-        link: "https://orangered-herring-112166.hostingersite.com/",
-      },
-    ];
-
     let updatedCount = 0;
-    for (const update of updates) {
-      const project = await ctx.db
+    let createdCount = 0;
+
+    for (const project of projects) {
+      const existing = await ctx.db
         .query("projects")
-        .filter((q) => q.eq(q.field("title"), update.title))
+        .filter((q) => q.eq(q.field("title"), project.title))
         .first();
-      
-      if (project) {
-        await ctx.db.patch(project._id, { link: update.link });
+
+      if (existing) {
+        await ctx.db.patch(existing._id, project);
         updatedCount++;
+      } else {
+        await ctx.db.insert("projects", project);
+        createdCount++;
       }
     }
 
-    return { message: `Updated ${updatedCount} project links successfully` };
+    return { message: `Seed complete: ${createdCount} created, ${updatedCount} updated` };
   },
 });
