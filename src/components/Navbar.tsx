@@ -1,25 +1,19 @@
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useScrollToSection } from "@/hooks/use-scroll-to-section";
+import { navigationItems } from "@/data/navigationItems";
+import NavItem from "./Navbar/NavItem";
+import MobileNavItem from "./Navbar/MobileNavItem";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const scrollToSection = useScrollToSection();
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const handleNavigation = (id: string) => {
+    scrollToSection(id);
+    setIsOpen(false);
   };
-
-  const navItems = [
-    { label: "About", id: "about" },
-    { label: "Experience", id: "experience" },
-    { label: "Projects", id: "projects" },
-    { label: "Skills", id: "skills" },
-    { label: "Contact", id: "contact" },
-  ];
 
   return (
     <motion.nav
@@ -30,7 +24,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <motion.button
-            onClick={() => scrollToSection("hero")}
+            onClick={() => handleNavigation("hero")}
             className="text-xl font-bold tracking-tight"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -40,14 +34,12 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
+            {navigationItems.map((item) => (
+              <NavItem
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </button>
+                label={item.label}
+                onClick={() => handleNavigation(item.id)}
+              />
             ))}
           </div>
 
@@ -67,14 +59,12 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden pt-4 pb-2 flex flex-col gap-4"
           >
-            {navItems.map((item) => (
-              <button
+            {navigationItems.map((item) => (
+              <MobileNavItem
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </button>
+                label={item.label}
+                onClick={() => handleNavigation(item.id)}
+              />
             ))}
           </motion.div>
         )}

@@ -1,4 +1,5 @@
 import { Github, Linkedin } from "lucide-react";
+import SocialLink from "./common/SocialLink";
 
 export default function Footer() {
   return (
@@ -10,22 +11,16 @@ export default function Footer() {
           </p>
           
           <div className="flex items-center gap-6">
-            <a
+            <SocialLink
               href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github size={20} />
-            </a>
-            <a
+              icon={Github}
+              label="GitHub Profile"
+            />
+            <SocialLink
               href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Linkedin size={20} />
-            </a>
+              icon={Linkedin}
+              label="LinkedIn Profile"
+            />
           </div>
         </div>
       </div>
