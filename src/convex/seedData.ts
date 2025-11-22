@@ -180,3 +180,103 @@ export const updateRdfundingLink = internalMutation({
     return { message: "Link updated successfully" };
   },
 });
+
+export const addExpenseTracker = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "Expense Tracker Application"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "Expense Tracker Application",
+      description: "A full-stack expense tracking application built with React, featuring PDF and CSV export capabilities, real-time data visualization, and comprehensive expense management. Developed as part of advanced Claude AI collaboration exercises.",
+      category: "Web Development",
+      technologies: ["React", "TypeScript", "PDF Export", "CSV Export", "Data Visualization"],
+      link: "https://github.com/Josencho1/expense-tracker",
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "Expense Tracker Application added successfully" };
+  },
+});
+
+export const addGasTechUnit3 = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "Gas Technician Unit 3 Training Website"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "Gas Technician Unit 3 Training Website",
+      description: "Interactive educational website covering properties, characteristics, and safe handling of fuel gases. Refactored using Claude AI with meta-prompting and context engineering, fact-checked against CSA training units and code B149.1.25 for regulatory compliance.",
+      category: "Technical Documentation",
+      technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1.25", "Meta-Prompting", "Context Engineering"],
+      link: "https://slateblue-magpie-302187.hostingersite.com/",
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "Gas Technician Unit 3 Training Website added successfully" };
+  },
+});
+
+export const addFurnaceSOP = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "High-Efficiency Furnace Maintenance SOP"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "High-Efficiency Furnace Maintenance SOP",
+      description: "Interactive Standard Operating Procedure for high-efficiency gas furnace inspection, maintenance, and commissioning. Features tabbed navigation, checklists, and detailed procedures adhering to CSA B149.1-25 and Ontario TSSA regulations.",
+      category: "Technical Documentation",
+      technologies: ["HTML", "CSS", "JavaScript", "CSA B149.1-25", "TSSA Compliance"],
+      link: "https://lightcoral-trout-302187.hostingersite.com/",
+      featured: false,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "High-Efficiency Furnace Maintenance SOP added successfully" };
+  },
+});
+
+export const addContextEngineering = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db
+      .query("projects")
+      .filter((q) => q.eq(q.field("title"), "Context Engineering Research"))
+      .first();
+    if (existing) {
+      return { message: "Project already exists" };
+    }
+
+    const project = {
+      title: "Context Engineering Research",
+      description: "Comprehensive research on Context Engineering methodologies for optimizing LLM performance. Covers retrieval strategies, processing techniques, and management approaches, contrasting with traditional Prompt Engineering. Includes impact statistics and future directions for agentic context systems.",
+      category: "Research",
+      technologies: ["LLM Optimization", "Context Engineering", "Prompt Engineering", "AI Research"],
+      link: null,
+      featured: true,
+    };
+
+    await ctx.db.insert("projects", project);
+    return { message: "Context Engineering Research added successfully" };
+  },
+});

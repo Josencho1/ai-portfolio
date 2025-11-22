@@ -17,11 +17,15 @@ export default function About() {
         
         <div className="space-y-6 text-lg text-muted-foreground">
           <p>
-            I'm an AI Systems Engineer with a proven track record of architecting scalable AI solutions that deliver significant business impact. My expertise spans Multi-Agent Frameworks, LLM integration, Python automation, and agile project management.
+            I'm an AI Systems Engineer with a proven track record of architecting scalable AI solutions that deliver significant business impact. My expertise spans Multi-Agent Frameworks, LLM integration, Python automation, and agile project management, complemented by hands-on technical documentation and regulatory compliance experience.
           </p>
           
           <p>
             Currently working with Hive Mind Solutions (HMS), I've successfully reduced AI operational costs by 85%, accelerated project planning cycles by 60%, and improved AI agent factual accuracy by 40% through innovative multi-agent architectures and RAG-based knowledge systems.
+          </p>
+
+          <p>
+            My cross-domain expertise bridges AI engineering with technical trades, having developed interactive training materials and SOPs for gas technician certification that adhere to CSA B149.1-25 and TSSA regulations. This unique combination enables me to create AI solutions grounded in real-world operational requirements and safety standards.
           </p>
           
           <p>
