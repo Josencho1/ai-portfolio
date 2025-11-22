@@ -272,7 +272,7 @@ export const addContextEngineering = internalMutation({
       description: "Comprehensive research on Context Engineering methodologies for optimizing LLM performance. Covers retrieval strategies, processing techniques, and management approaches, contrasting with traditional Prompt Engineering. Includes impact statistics and future directions for agentic context systems.",
       category: "Research",
       technologies: ["LLM Optimization", "Context Engineering", "Prompt Engineering", "AI Research"],
-      link: null,
+      link: https://slateblue-magpie-954127.hostingersite.com/,
       featured: true,
     };
 
