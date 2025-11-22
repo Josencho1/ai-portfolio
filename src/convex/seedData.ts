@@ -311,3 +311,46 @@ export const addContextEngineering = internalMutation({
     return { message: "Context Engineering Research added successfully" };
   },
 });
+
+export const fixAllLinks = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const updates = [
+      {
+        title: "Context Engineering Research",
+        link: "https://slateblue-magpie-954127.hostingersite.com/",
+      },
+      {
+        title: "High-Efficiency Furnace Maintenance SOP",
+        link: "https://navajowhite-snake-846878.hostingersite.com/",
+      },
+      {
+        title: "Gas Technician Unit 3 Training Website",
+        link: "https://gray-badger-918104.hostingersite.com/",
+      },
+      {
+        title: "LLM Resilience Test Report",
+        link: "https://antiquewhite-snake-885911.hostingersite.com/",
+      },
+      {
+        title: "AI Career Roadmap Infographic",
+        link: "https://orangered-herring-112166.hostingersite.com/",
+      },
+    ];
+
+    let updatedCount = 0;
+    for (const update of updates) {
+      const project = await ctx.db
+        .query("projects")
+        .filter((q) => q.eq(q.field("title"), update.title))
+        .first();
+      
+      if (project) {
+        await ctx.db.patch(project._id, { link: update.link });
+        updatedCount++;
+      }
+    }
+
+    return { message: `Updated ${updatedCount} project links successfully` };
+  },
+});
