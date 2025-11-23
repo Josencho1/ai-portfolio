@@ -25,14 +25,24 @@ export default function Projects() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects?.map((project, index) => (
-          <ProjectCard
-            key={project._id}
-            project={project}
-            delay={index * 0.1}
-            inView={inView}
-          />
-        ))}
+        {projects && projects.length > 0 ? (
+          projects.map((project, index) => (
+            <ProjectCard
+              key={project._id}
+              project={project}
+              delay={index * 0.1}
+              inView={inView}
+            />
+          ))
+        ) : projects && projects.length === 0 ? (
+          <p className="text-muted-foreground col-span-2 text-center">
+            No projects found in this category.
+          </p>
+        ) : (
+          <p className="text-muted-foreground col-span-2 text-center">
+            Loading projects...
+          </p>
+        )}
       </div>
     </SectionContainer>
   );

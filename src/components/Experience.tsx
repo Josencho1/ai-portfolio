@@ -15,17 +15,25 @@ export default function Experience() {
       </SectionTitle>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {achievements.map((achievement, index) => (
-          <AchievementCard
-            key={index}
-            {...achievement}
-            delay={index * 0.1}
-            inView={inView}
-          />
-        ))}
+        {achievements && achievements.length > 0 ? (
+          achievements.map((achievement, index) => (
+            <AchievementCard
+              key={index}
+              {...achievement}
+              delay={index * 0.1}
+              inView={inView}
+            />
+          ))
+        ) : (
+          <p className="text-muted-foreground col-span-2 text-center">
+            No achievements data available.
+          </p>
+        )}
       </div>
 
-      <AccomplishmentsList accomplishments={accomplishments} inView={inView} />
+      {accomplishments && accomplishments.length > 0 && (
+        <AccomplishmentsList accomplishments={accomplishments} inView={inView} />
+      )}
     </SectionContainer>
   );
 }
