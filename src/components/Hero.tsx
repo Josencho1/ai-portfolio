@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import SocialLink from "./common/SocialLink";
+import { personalInfo } from "@/data/personalInfo";
 
 export default function Hero() {
   const scrollToSection = useScrollToSection();
@@ -16,15 +17,15 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Jose Francisco Santos
+            {personalInfo.name.split(" ").slice(0, 3).join(" ")}
             <br />
-            Hidalgo Alvarez
+            {personalInfo.name.split(" ").slice(3).join(" ")}
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            AI Systems Engineer
+            {personalInfo.title}
           </p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
-            Specializing in Multi-Agent Frameworks and Agentic AI, architecting scalable AI solutions that deliver significant business impact.
+            {personalInfo.description}
           </p>
 
           <div className="flex items-center justify-center gap-4 mb-12">
@@ -34,7 +35,7 @@ export default function Hero() {
               className="gap-2"
             >
               <Mail size={18} />
-              Get in Touch
+              {personalInfo.contactAction.label}
             </Button>
             <Button
               onClick={() => scrollToSection("projects")}
@@ -46,8 +47,14 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center justify-center gap-6">
-            <SocialLink href="https://github.com" icon={Github} label="GitHub Profile" />
-            <SocialLink href="https://linkedin.com" icon={Linkedin} label="LinkedIn Profile" />
+            {personalInfo.socials.map((social) => (
+              <SocialLink
+                key={social.label}
+                href={social.href}
+                icon={social.icon}
+                label={social.label}
+              />
+            ))}
           </div>
         </motion.div>
 

@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import { navigationItems } from "@/data/navigationItems";
+import { personalInfo } from "@/data/personalInfo";
 import NavItem from "./Navbar/NavItem";
 import MobileNavItem from "./Navbar/MobileNavItem";
 
@@ -29,7 +30,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            JH
+            {personalInfo.initials}
           </motion.button>
 
           {/* Desktop Navigation */}

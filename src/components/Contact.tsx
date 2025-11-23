@@ -2,6 +2,7 @@ import { Mail } from "lucide-react";
 import SectionContainer from "./common/SectionContainer";
 import SectionTitle from "./common/SectionTitle";
 import ContactForm from "./Contact/ContactForm";
+import { personalInfo } from "@/data/personalInfo";
 
 export default function Contact() {
   return (
@@ -18,11 +19,11 @@ export default function Contact() {
         <div className="mt-12 text-center">
           <p className="text-muted-foreground mb-4">Or reach out directly</p>
           <a
-            href="mailto:josepakohidalgo@gmail.com"
+            href={`mailto:${personalInfo.email}`}
             className="inline-flex items-center gap-2 text-primary hover:underline"
           >
             <Mail size={18} />
-            josepakohidalgo@gmail.com
+            {personalInfo.email}
           </a>
         </div>
       </div>

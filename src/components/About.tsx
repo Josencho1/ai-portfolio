@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import EducationList from "./About/EducationList";
+import { educationData } from "@/data/educationData";
 
 export default function About() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -32,19 +34,7 @@ export default function About() {
             I hold 9 professional specializations from institutions including DeepLearning.AI, Google, and Vanderbilt University, covering areas from Multi AI Agent Systems to Generative AI Leadership & Strategy.
           </p>
 
-          <div className="pt-8">
-            <h3 className="text-2xl font-bold tracking-tight mb-4 text-foreground">Education</h3>
-            <div className="space-y-4">
-              <div>
-                <p className="font-semibold text-foreground">Energy Systems Engineering Technician Diploma</p>
-                <p className="text-sm">St. Lawrence College, Kingston, ON | 2022–2024</p>
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Residential A/C Systems Technician Pre-Apprenticeship (Level 1)</p>
-                <p className="text-sm">St. Lawrence College, Kingston, ON | Completed August 2025</p>
-              </div>
-            </div>
-          </div>
+          <EducationList education={educationData} />
         </div>
       </motion.div>
     </section>
