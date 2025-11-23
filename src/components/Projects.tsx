@@ -9,7 +9,7 @@ import ProjectCard from "./Projects/ProjectCard";
 import { projectCategories } from "@/data/projectCategories";
 
 export default function Projects() {
-  const [, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedCategory, setSelectedCategory] = useState("all");
   
   const projects = useQuery(api.projects.getByCategory, { category: selectedCategory });
@@ -24,7 +24,7 @@ export default function Projects() {
         onCategoryChange={setSelectedCategory}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects && projects.length > 0 ? (
           projects.map((project, index) => (
             <ProjectCard
