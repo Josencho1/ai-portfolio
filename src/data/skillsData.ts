@@ -1,48 +1,54 @@
-import { Bot, Cloud, Code, Database, GitBranch, Workflow } from "lucide-react";
+import { Bot, Cloud, Code, Database, GitBranch, Workflow, Cpu, Layers, TrendingUp } from "lucide-react";
 
 export const skillCategories = [
   {
     icon: Bot,
-    title: "AI & Multi-Agent Frameworks",
+    title: "Production Agentic Systems",
     skills: [
+      "Multi-Agent Orchestration",
       "CrewAI",
       "LangGraph",
-      "Agentic AI Architecture",
       "LLM Integration",
-      "RAG Architectures",
-      "Prompt Engineering",
+      "RAG Systems",
+      "Hallucination Mitigation",
+      "Meta-Prompting",
+    ],
+  },
+  {
+    icon: Layers,
+    title: "Orchestration & Platforms",
+    skills: [
+      "Workflow Automation",
+      "n8n",
+      "Make",
+      "Zapier",
+      "Flowise",
+      "API Management",
+      "Task Orchestration",
     ],
   },
   {
     icon: Code,
-    title: "Python & Development",
+    title: "Engineering & DevOps",
     skills: [
-      "Python for AI/ML",
-      "Automation Scripting",
-      "Backend Development",
-      "Data Structures & Algorithms",
+      "Python (Flask, Scripting)",
+      "Google Cloud Platform",
+      "Vertex AI",
+      "AWS (EC2, Lambda)",
+      "Git & GitHub",
+      "CI/CD Fundamentals",
+      "SQL",
     ],
   },
   {
-    icon: Workflow,
-    title: "Project Management",
+    icon: TrendingUp,
+    title: "Production Optimization",
     skills: [
-      "Agile Methodologies",
-      "Waterfall",
-      "Project Planning",
-      "Risk Assessment",
-      "Stakeholder Reporting",
+      "Cost Optimization Strategies",
+      "Performance Tuning",
+      "Error Handling & Resilience",
+      "Scalability Architecture",
     ],
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    skills: ["Google Cloud Platform", "AWS Fundamentals", "Git & GitHub"],
-  },
-  {
-    icon: Database,
-    title: "Data Science",
-    skills: ["SQL", "Advanced Data Analysis", "Data Visualization"],
   },
   {
     icon: GitBranch,

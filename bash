@@ -1,1 +1,1 @@
-npx convex run convex/seedData:seed
+npx convex run seedData:seed
