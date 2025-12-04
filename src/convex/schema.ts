@@ -37,7 +37,7 @@ const schema = defineSchema(
       technologies: v.array(v.string()),
       link: v.union(v.string(), v.null()),
       featured: v.boolean(),
-    }),
+    }).index("by_category", ["category"]),
 
     messages: defineTable({
       name: v.string(),

@@ -16,7 +16,7 @@ export const getByCategory = query({
     }
     return await ctx.db
       .query("projects")
-      .filter((q) => q.eq(q.field("category"), args.category))
+      .withIndex("by_category", (q) => q.eq("category", args.category))
       .order("desc")
       .collect();
   },

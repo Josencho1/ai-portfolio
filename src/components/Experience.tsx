@@ -2,7 +2,7 @@ import { useInView } from "react-intersection-observer";
 import SectionContainer from "./common/SectionContainer";
 import SectionTitle from "./common/SectionTitle";
 import AchievementCard from "./Experience/AchievementCard";
-import AccomplishmentsList from "./Experience/AccomplishmentsList";
+import BulletListCard from "./common/BulletListCard";
 import { achievements, accomplishments } from "@/data/experienceData";
 
 export default function Experience() {
@@ -33,7 +33,12 @@ export default function Experience() {
         </div>
 
         {accomplishments && accomplishments.length > 0 && (
-          <AccomplishmentsList accomplishments={accomplishments} inView={inView} />
+          <BulletListCard
+            title="Key Accomplishments"
+            items={accomplishments}
+            inView={inView}
+            className="mt-16"
+          />
         )}
       </div>
     </SectionContainer>

@@ -2,7 +2,7 @@ import { useInView } from "react-intersection-observer";
 import SectionContainer from "./common/SectionContainer";
 import SectionTitle from "./common/SectionTitle";
 import SkillCategoryCard from "./Skills/SkillCategoryCard";
-import CertificationsList from "./Skills/CertificationsList";
+import BulletListCard from "./common/BulletListCard";
 import { skillCategories, certifications } from "@/data/skillsData";
 
 export default function Skills() {
@@ -24,7 +24,13 @@ export default function Skills() {
           ))}
         </div>
 
-        <CertificationsList certifications={certifications} inView={inView} />
+        <BulletListCard
+          title="Certifications & Specializations"
+          items={certifications}
+          inView={inView}
+          delay={0.6}
+          className="mt-16"
+        />
       </div>
     </SectionContainer>
   );

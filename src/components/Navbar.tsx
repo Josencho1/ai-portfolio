@@ -5,7 +5,6 @@ import { useScrollToSection } from "@/hooks/use-scroll-to-section";
 import { navigationItems } from "@/data/navigationItems";
 import { personalInfo } from "@/data/personalInfo";
 import NavItem from "./Navbar/NavItem";
-import MobileNavItem from "./Navbar/MobileNavItem";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,10 +60,11 @@ export default function Navbar() {
             className="md:hidden pt-4 pb-2 flex flex-col gap-4"
           >
             {navigationItems.map((item) => (
-              <MobileNavItem
+              <NavItem
                 key={item.id}
                 label={item.label}
                 onClick={() => handleNavigation(item.id)}
+                className="text-left"
               />
             ))}
           </motion.div>
