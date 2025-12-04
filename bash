@@ -1,1 +1,1 @@
-npx convex run seedData:seed
+rm -rf src/pages/Auth.tsx src/hooks/use-auth.ts src/convex/auth.ts src/convex/auth.config.ts src/convex/users.ts src/convex/auth src/types/global.d.ts
