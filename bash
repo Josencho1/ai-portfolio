@@ -1,1 +1,1 @@
-npx convex run seedData:seed
+ls -F
