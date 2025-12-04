@@ -1,9 +1,9 @@
 import { ExternalLink } from "lucide-react";
 import AnimatedCard from "../common/AnimatedCard";
-import { Doc } from "@/convex/_generated/dataModel";
+import { Project } from "@/data/projectsData";
 
 interface ProjectCardProps {
-  project: Doc<"projects">;
+  project: Project;
   delay: number;
   inView: boolean;
 }
