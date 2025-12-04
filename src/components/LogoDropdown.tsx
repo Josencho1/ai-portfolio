@@ -1,65 +1,49 @@
-// simple logo dropdown component that can be used to go to the landing page or sign out for the user
-
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/hooks/use-auth";
-import { Home, LogOut } from "lucide-react";
-import { useNavigate } from "react-router";
+import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { ChevronsUpDown, Sparkles } from "lucide-react";
 
 export function LogoDropdown() {
-  const { isAuthenticated, signOut } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      navigate("/");
-    } catch (error) {
-      console.error("Sign out error:", error);
-    }
-  };
-
-  const handleGoHome = () => {
-    navigate("/");
-  };
-
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-10 w-10">
-          <img
-            src="/logo.svg"
-            alt="Logo"
-            width={32}
-            height={32}
-            className="rounded-lg"
-          />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-48">
-        <DropdownMenuItem onClick={handleGoHome} className="cursor-pointer">
-          <Home className="mr-2 h-4 w-4" />
-          Landing Page
-        </DropdownMenuItem>
-        {isAuthenticated && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={handleSignOut}
-              className="cursor-pointer text-destructive focus:text-destructive"
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <Sparkles className="size-4" />
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">AI Portfolio</span>
+                <span className="truncate text-xs">Personal</span>
+              </div>
+              <ChevronsUpDown className="ml-auto" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            align="start"
+            sideOffset={4}
+          >
+            <DropdownMenuItem>
+              <div className="flex aspect-square size-6 items-center justify-center rounded-sm border">
+                <Sparkles className="size-4 shrink-0" />
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">AI Portfolio</span>
+                <span className="truncate text-xs">Personal</span>
+              </div>
             </DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
   );
 }
