@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export const personalInfo = {
-  name: "Jose Francisco Santos Hidalgo Alvarez",
+  name: "Jose Hidalgo",
   initials: "JH",
   title: "AI Systems Engineer",
   email: "josepakohidalgo@gmail.com",
